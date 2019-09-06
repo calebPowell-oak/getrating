@@ -3,6 +3,9 @@ const client = new Discord.Client();
 const fs = require('fs');
 const token = fs.readFileSync('key.txt').toString();
 
+const holyURL = 'https://rocketleague.tracker.network/profile/steam/76561198014985413/';
+const krebURL = "https://rocketleague.tracker.network/profile/steam/krebble/';
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
