@@ -6,8 +6,8 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 
-const holyURL = 'https://rocketleague.tracker.network/profile/steam/76561198014985413/';
-const krebURL = 'https://rocketleague.tracker.network/profile/steam/krebble/';
+const players = [{url: 'https://rocketleague.tracker.network/profile/steam/76561198014985413/', name: 'Sean'},
+  {url: 'https://rocketleague.tracker.network/profile/steam/krebble/', name: 'Caleb'}];
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -15,25 +15,20 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === '?mmr') {
-    let result = "blank result";
-    //put the calls down here
-    axios.get(holyURL).then(response => {
-      console.log(response.data);
-      msg.reply(response.data.substring(0,20));
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-    axios.get(krebURL).then(response => {
-      console.log(response.data);
-      msg.reply(response.data.substring(0,20));
-    })
-    .catch(error => {
-      console.log(error);
-    });
-    msg.reply(result); //reply go here
-    console.log(result);
+    for(i = 0; i < players.length; i++){
+        let name = players[i].name;
+        axios.get(players[i].url).then(response => {
+          const $ = cheerio.load(response.data);
+          let x1 = $('tr:nth-child(3) td:nth-child(4)', '#season-12');
+          let x2 = $('tr:nth-child(5) td:nth-child(4)', '#season-12');
+          let message = `${name}:\n2v2 Rating: ${x1.text()}\n3v3 Rating: ${x2.text()}\n`;
+          console.log(message);
+          msg.reply(message);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 });
 
