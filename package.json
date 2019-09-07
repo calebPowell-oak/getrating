@@ -1,0 +1,19 @@
+{
+  "name": "getrating",
+  "version": "1.0.0",
+  "description": "A Discord bot that displays my Rocket League Standard and Doubles MMRs to chat",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebPowell-oak/getrating.git"
+  },
+  "author": "Kle3b",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calebPowell-oak/getrating/issues"
+  },
+  "homepage": "https://github.com/calebPowell-oak/getrating#readme"
+}
